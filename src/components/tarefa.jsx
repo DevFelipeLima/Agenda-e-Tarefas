@@ -1,7 +1,16 @@
 import React from 'react';
+import{CgClose, CgInfo} from 'react-icons/cg'
+import { useHistory } from 'react-router-dom';
+
 import "./tarefa.css"
 
-const Tarefa = ({tarefa, quandoConcluir}) => {
+const Tarefa = ({tarefa, quandoConcluir, quandoRemover}) => {
+
+    const history = useHistory()
+    const quandoClicarAbas =()=>{
+        history.push(`/${tarefa.title}`)
+    }
+
     return (
             <div 
                 className='task-container'    
@@ -9,6 +18,16 @@ const Tarefa = ({tarefa, quandoConcluir}) => {
             >
                 <div className ='titulo' onClick={()=>quandoConcluir(tarefa.id)}>
                 {tarefa.title}
+                </div>
+                <div className='botoesContainer'>
+                    <button className='removerTarefa'onClick={()=>quandoRemover(tarefa.id)}>
+                    <CgClose />
+                    </button>
+                    <button className='informacoesTarefa' onClick={quandoClicarAbas}>
+                    <CgInfo />
+                    </button>
+
+
                 </div>
             </div>
     )

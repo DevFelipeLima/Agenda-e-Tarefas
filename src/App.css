@@ -3,7 +3,18 @@
     margin: 30px auto;
     overflow: auto;
     min-height: 300px;
-    border: 2px solid rgb(27, 122, 167);
+    border: 2px solid aqua;
+    padding: 30px;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.CalendarioCont{
+    max-width: 500px;
+    margin: 30px auto;
+    overflow: auto;
+    min-height: 300px;
+    border: 2px solid aqua;
     padding: 30px;
     border-radius: 10px;
     font-size: 1rem;

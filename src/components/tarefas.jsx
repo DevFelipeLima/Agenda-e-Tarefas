@@ -2,11 +2,11 @@ import React from 'react'
 import Tarefa from './tarefa';
 
 
-const Tarefas=({tarefas, quandoConcluir})=>{
+const Tarefas=({tarefas, quandoConcluir, quandoRemover})=>{
 return (
     <>
         {tarefas.map((tarefa)=> (
-        <Tarefa tarefa={tarefa} quandoConcluir={quandoConcluir} />
+        <Tarefa tarefa={tarefa} quandoConcluir={quandoConcluir} quandoRemover={quandoRemover} />
         ))}
     </>
 )

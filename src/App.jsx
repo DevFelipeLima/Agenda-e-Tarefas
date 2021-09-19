@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import {v4 as uuidv4} from 'uuid'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Tarefas from './components/tarefas.jsx'
 import AddTask from './components/AddTarefa.jsx';
+import Cabeçalho from './components/cabeçalho.jsx';
+import Informacoes from './components/informações.jsx';
+import Calendario from './components/calendario.jsx';
+
+
 import "./App.css";
-
-
 
 
 const App =() => {
@@ -19,8 +23,8 @@ const App =() => {
       {
         id: '2',
         title:'Ler livros',
-        completed: true,
-      },
+        completed: false,
+      }, // useState = hook
   ]);
   const quandoConcluir =(tarefaId)=>{
       const novatarefa = tarefas.map(tarefa=>{
@@ -36,20 +40,38 @@ const App =() => {
     const novaTarefas = [... tarefas, {
             title: tarefaTitle,
             id: uuidv4(),
-            completed: true,
+            completed: false,
     }]
-    
+    setTarefas(novaTarefas)
+  }
+
+  const quandoRemover=(tarefaId)=>{
+    const novaTarefas = tarefas.filter(tarefa => tarefa.id != tarefaId)
+
     setTarefas(novaTarefas)
   }
 
   return (
-    <>
+    <Router>
       <div className='container'>
-        <AddTask quandoAddTarefa={qunadoAdicionar} />
-        <Tarefas tarefas={tarefas} quandoConcluir={quandoConcluir}/>
-        
+        <Cabeçalho />
+        <Route path='/' exact render={()=>{
+          return (
+          <>
+          <AddTask quandoAddTarefa={qunadoAdicionar} />
+          <Tarefas 
+                tarefas={tarefas} 
+                quandoConcluir={quandoConcluir}
+                quandoRemover={quandoRemover} 
+                />
+          </>
+        )}}/>
+      <Route path ='/:tarefaTitle' exact component={Informacoes}/>
       </div>
-    </>
+      <div className='CalendarioCont'>
+        <Calendario />
+      </div>
+    </Router>
   )
 }
 export default App;
